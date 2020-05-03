@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="..\..\..\..\%2540GitHub\Developer\WebApi-Chat\Services.Chat\Services\NewFolder\" />
+    <Folder Include="Services\Vehicle\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccessData.Chat\AccessData.Chat.csproj" />
+    <ProjectReference Include="..\Utils.Chat\Utils.Chat.csproj" />
+  </ItemGroup>
+
+</Project>
