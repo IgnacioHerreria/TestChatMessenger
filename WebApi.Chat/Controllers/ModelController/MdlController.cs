@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using AccessData.Chat.Models;
-using Logic.Chat.Services;
+using Services.Chat.Services;
 using Microsoft.AspNetCore.Mvc;
+using Utils.Chat.Dto;
+using System.Linq;
+using LoggerService;
 
 namespace WebApi.Chat.Controllers
 {
@@ -10,18 +12,22 @@ namespace WebApi.Chat.Controllers
     public class MdlController : Controller
     {
         private readonly IModelService _modelService;
+        private readonly ILoggerManager _loggerManager;
 
-        public MdlController(IModelService modelService)
+        public MdlController(IModelService modelService, ILoggerManager loggerManager)
         {
             _modelService = modelService;
+            _loggerManager = loggerManager;
         }
 
-
-
         [HttpGet]
-        public List<Model> Get()
+        public List<DtoResponse> Get()
         {
-            return _modelService.Get();
+            _loggerManager.LogInfo("Here is info message from the controller.");
+            _loggerManager.LogDebug("Here is debug message from the controller.");
+            _loggerManager.LogWarn("Here is warn message from the controller.");
+            _loggerManager.LogError("Here is error message from the controller.");
+            return _modelService.Get()?.ToList();
         }
     }
 }

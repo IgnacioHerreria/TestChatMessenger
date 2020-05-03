@@ -24,11 +24,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logic.Chat\Logic.Chat.csproj" />
+    <ProjectReference Include="..\Logger.Chat\Logger.Chat.csproj" />
+    <ProjectReference Include="..\Services.Chat\Services.Chat.csproj" />
   </ItemGroup>
 
 </Project>

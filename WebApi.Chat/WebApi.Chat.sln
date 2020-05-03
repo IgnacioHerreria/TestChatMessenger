@@ -3,11 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Chat", "WebApi.Chat.csproj", "{2456D381-5573-47C4-B619-EF867B28BE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi.Chat", "WebApi.Chat.csproj", "{2456D381-5573-47C4-B619-EF867B28BE52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessData.Chat", "..\AccessData.Chat\AccessData.Chat.csproj", "{F309EEBD-4006-4885-8814-8B9D00CCCA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessData.Chat", "..\AccessData.Chat\AccessData.Chat.csproj", "{F309EEBD-4006-4885-8814-8B9D00CCCA7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Chat", "..\Logic.Chat\Logic.Chat.csproj", "{7D9B4A39-1E0D-4E66-9CFB-11AFD61CF58B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Chat", "..\Services.Chat\Services.Chat.csproj", "{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Chat", "..\Utils.Chat\Utils.Chat.csproj", "{9D23161D-F8B3-4782-90D6-F39613369E4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Chat", "..\Logger.Chat\Logger.Chat.csproj", "{B616B9ED-55E7-434B-8BB9-F3A0B8C45789}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - DAL", "02 - DAL", "{0678C6B6-6DF3-4BED-B938-98ABF7339FD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - UTIL", "01 - UTIL", "{5BFCFBEC-79AE-4530-A9B8-3447F4E3B190}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - BLL", "03 - BLL", "{ED8A94DC-4547-4F99-9196-40D250ABB2D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,13 +33,27 @@ Global
 		{F309EEBD-4006-4885-8814-8B9D00CCCA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F309EEBD-4006-4885-8814-8B9D00CCCA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F309EEBD-4006-4885-8814-8B9D00CCCA7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D9B4A39-1E0D-4E66-9CFB-11AFD61CF58B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D9B4A39-1E0D-4E66-9CFB-11AFD61CF58B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D9B4A39-1E0D-4E66-9CFB-11AFD61CF58B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D9B4A39-1E0D-4E66-9CFB-11AFD61CF58B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D23161D-F8B3-4782-90D6-F39613369E4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D23161D-F8B3-4782-90D6-F39613369E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D23161D-F8B3-4782-90D6-F39613369E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D23161D-F8B3-4782-90D6-F39613369E4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B616B9ED-55E7-434B-8BB9-F3A0B8C45789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B616B9ED-55E7-434B-8BB9-F3A0B8C45789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B616B9ED-55E7-434B-8BB9-F3A0B8C45789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B616B9ED-55E7-434B-8BB9-F3A0B8C45789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F309EEBD-4006-4885-8814-8B9D00CCCA7A} = {0678C6B6-6DF3-4BED-B938-98ABF7339FD9}
+		{AA8F1DF0-CDE2-4346-961C-872A1CBF9F37} = {ED8A94DC-4547-4F99-9196-40D250ABB2D4}
+		{9D23161D-F8B3-4782-90D6-F39613369E4A} = {5BFCFBEC-79AE-4530-A9B8-3447F4E3B190}
+		{B616B9ED-55E7-434B-8BB9-F3A0B8C45789} = {ED8A94DC-4547-4F99-9196-40D250ABB2D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D82C87CB-D747-436C-A6E1-62642EBC0C30}

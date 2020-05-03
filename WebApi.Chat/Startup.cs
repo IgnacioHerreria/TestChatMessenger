@@ -1,23 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
+using System.IO;
+using System.Text;
 using AccessData.Chat.Models;
-using Logic.Chat.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebApi.Chat.Authentication;
+using NLog;
+using Services.Chat.Services;
+using WebApi.Chat.Extensions;
 
 namespace WebApi.Chat
 {
@@ -25,6 +21,7 @@ namespace WebApi.Chat
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -33,20 +30,34 @@ namespace WebApi.Chat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureCors();
+            services.ConfigureIISIntegration();
             services.AddAuthentication(
                 options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                }).AddJwtBearer(
+                }
+                ).AddJwtBearer(
                 options =>
                 {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "",
+                        ValidAudience = "",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                    };
 
                 });
             services.Configure<DataBaseSettings>(Configuration.GetSection(nameof(DataBaseSettings)));
 
             services.AddSingleton<IDataBaseSettings>(st => st.GetRequiredService<IOptions<DataBaseSettings>>().Value);
             services.AddSingleton<IModelService, ModelService>();
+            services.ConfigureLoggerService();
             services.AddControllers();
         }
 
@@ -71,6 +82,15 @@ namespace WebApi.Chat
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.All
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -80,5 +100,7 @@ namespace WebApi.Chat
                 endpoints.MapControllers();
             });
         }
+
+
     }
 }
