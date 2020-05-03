@@ -8,8 +8,4 @@
     <ProjectReference Include="..\AccessData.Chat\AccessData.Chat.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Vehicle\" />
-  </ItemGroup>
-
 </Project>
